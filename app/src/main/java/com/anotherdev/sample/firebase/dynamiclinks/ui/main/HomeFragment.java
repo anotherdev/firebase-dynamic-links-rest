@@ -47,8 +47,14 @@ public class HomeFragment extends Fragment {
         linkTextView = view.findViewById(R.id.link_textview);
 
         createLinkButton.setOnClickListener(button -> {
+            linkTextView.setText(null);
+
             DynamicLink.AndroidParameters.Builder paramBuilder = new DynamicLink.AndroidParameters.Builder();
-            DynamicLink.SocialMetaTagParameters.Builder socialBuilder = new DynamicLink.SocialMetaTagParameters.Builder();
+
+            DynamicLink.SocialMetaTagParameters.Builder socialBuilder = new DynamicLink.SocialMetaTagParameters.Builder()
+                    .setTitle("Social Title")
+                    .setDescription("Social Description")
+                    .setImageUrl(Uri.parse("http://via.placeholder.com/150?text=Social"));
 
             DynamicLink.Builder linkBuilder = FirebaseDynamicLinks.getInstance()
                     .createDynamicLink()
@@ -60,9 +66,12 @@ public class HomeFragment extends Fragment {
             linkBuilder.buildShortDynamicLink(ShortDynamicLink.Suffix.UNGUESSABLE)
                     .addOnSuccessListener(link -> {
                         Log.e(TAG, "onSuccess: " + link);
-                        linkTextView.setText(link.getShortLink().toString());
+                        linkTextView.setText(String.valueOf(link.getShortLink()));
                     })
-                    .addOnFailureListener(e -> Log.e(TAG, e.getMessage(), e));
+                    .addOnFailureListener(e -> {
+                        Log.e(TAG, e.getMessage(), e);
+                        linkTextView.setText(e.getMessage());
+                    });
         });
     }
 
