@@ -35,6 +35,9 @@ android {
 
 dependencies {
 
+    releaseImplementation "com.github.anotherdev:firebase-dynamic-links-rest:$versionName"
+    debugImplementation project(':firebase-dynamic-links-rest')
+
     implementation 'androidx.appcompat:appcompat:1.2.0'
 
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
@@ -45,9 +48,6 @@ dependencies {
     implementation 'androidx.startup:startup-runtime:1.0.0'
 
     implementation 'com.google.android.material:material:1.2.1'
-
-    implementation platform('com.google.firebase:firebase-bom:26.0.0')
-    implementation 'com.google.firebase:firebase-dynamic-links'
 
     testImplementation 'junit:junit:4.13.1'
 
