@@ -68,7 +68,7 @@ public class HomeFragment extends Fragment {
                         Log.i(TAG, "onSuccess: getPreviewLink: " + link.getPreviewLink());
                         Log.i(TAG, "onSuccess: getShortLink: " + link.getShortLink());
                         for (ShortDynamicLink.Warning warning : link.getWarnings()) {
-                            Log.i(TAG, "onSuccess: warning: " + warning.getMessage());
+                            Log.w(TAG, "onSuccess: warning: " + warning.getMessage());
                         }
                         linkTextView.setText(String.valueOf(link.getShortLink()));
                     })
