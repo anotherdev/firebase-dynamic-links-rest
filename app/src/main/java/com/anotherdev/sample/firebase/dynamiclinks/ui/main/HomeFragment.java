@@ -65,7 +65,11 @@ public class HomeFragment extends Fragment {
 
             linkBuilder.buildShortDynamicLink(ShortDynamicLink.Suffix.UNGUESSABLE)
                     .addOnSuccessListener(link -> {
-                        Log.e(TAG, "onSuccess: " + link);
+                        Log.i(TAG, "onSuccess: getPreviewLink: " + link.getPreviewLink());
+                        Log.i(TAG, "onSuccess: getShortLink: " + link.getShortLink());
+                        for (ShortDynamicLink.Warning warning : link.getWarnings()) {
+                            Log.i(TAG, "onSuccess: warning: " + warning.getMessage());
+                        }
                         linkTextView.setText(String.valueOf(link.getShortLink()));
                     })
                     .addOnFailureListener(e -> {
