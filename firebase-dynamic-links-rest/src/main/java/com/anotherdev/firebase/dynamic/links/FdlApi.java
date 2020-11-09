@@ -6,6 +6,8 @@ import retrofit2.http.POST;
 
 interface FdlApi {
 
-    @POST("https://firebasedynamiclinks.googleapis.com/v1/shortLinks")
+    String BASE_URL = "https://firebasedynamiclinks.googleapis.com/v1/";
+
+    @POST("shortLinks")
     Call<String> shortLinks(@Body String request);
 }

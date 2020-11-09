@@ -40,6 +40,7 @@ public class FirebaseDynamicLinksRest {
                     .build();
 
             api = new Retrofit.Builder()
+                    .baseUrl(FdlApi.BASE_URL)
                     .client(client)
                     .addConverterFactory(GsonConverterFactory.create())
                     .build()
