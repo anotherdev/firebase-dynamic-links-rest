@@ -38,19 +38,19 @@ dependencies {
     releaseImplementation "com.github.anotherdev:firebase-dynamic-links-rest:$versionName"
     debugImplementation project(':firebase-dynamic-links-rest')
 
-    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation "androidx.appcompat:appcompat:$androidxAppCompatVersion"
 
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+    implementation "androidx.constraintlayout:constraintlayout:$androidxConstraintLayoutVersion"
 
-    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.2.0'
-    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0'
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$androidxLifecycleVersion"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$androidxLifecycleVersion"
 
-    implementation 'androidx.startup:startup-runtime:1.0.0'
+    implementation "androidx.startup:startup-runtime:$androidxStartupVersion"
 
-    implementation 'com.google.android.material:material:1.2.1'
+    implementation "com.google.android.material:material:$googleMaterialVersion"
 
-    testImplementation 'junit:junit:4.13.1'
+    testImplementation "junit:junit:$junitVersion"
 
-    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    androidTestImplementation "androidx.test.ext:junit:$androidxTestJunitVersion"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$androidxTestEspressoVersion"
 }
