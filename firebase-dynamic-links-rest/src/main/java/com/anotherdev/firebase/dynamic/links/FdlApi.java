@@ -9,5 +9,5 @@ interface FdlApi {
     String BASE_URL = "https://firebasedynamiclinks.googleapis.com/v1/";
 
     @POST("shortLinks")
-    Call<String> shortLinks(@Body String request);
+    Call<FdlResponse> shortLinks(@Body FdlRequest request);
 }
