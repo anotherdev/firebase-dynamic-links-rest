@@ -33,7 +33,7 @@ ext {
     googleMaterialVersion = '1.2.1'
     gsonVersion = '2.8.6'
     immutablesVersion = '2.8.2'
-    okhttpVersion = '4.8.0'
+    okhttpVersion = '4.9.0'
     retrofitVersion = '2.9.0'
     rxJava3Version = '3.0.4'
     rxJavaBridgeVersion = '3.0.0'

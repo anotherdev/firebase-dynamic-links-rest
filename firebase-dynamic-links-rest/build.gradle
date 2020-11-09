@@ -32,6 +32,8 @@ dependencies {
     implementation platform("com.google.firebase:firebase-bom:$firebaseBomVersion")
     api "com.google.firebase:firebase-dynamic-links"
 
+    implementation "com.squareup.okhttp3:okhttp:$okhttpVersion"
+
     testImplementation "junit:junit:$junitVersion"
 
     androidTestImplementation "androidx.test.ext:junit:$androidxTestJunitVersion"
