@@ -29,6 +29,7 @@ ext {
     androidxConstraintLayoutVersion = '2.0.4'
     androidxLifecycleVersion = '2.2.0'
     androidxStartupVersion = '1.0.0'
+    chuckerVersion = '3.4.0'
     firebaseBomVersion = '26.0.0'
     googleMaterialVersion = '1.2.1'
     gsonVersion = '2.8.6'
