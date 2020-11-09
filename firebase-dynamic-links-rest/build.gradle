@@ -40,6 +40,11 @@ dependencies {
     implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
     implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
 
+    compileOnly "org.immutables:gson:$immutablesVersion"
+    annotationProcessor "org.immutables:value:$immutablesVersion"
+    //noinspection AnnotationProcessorOnCompilePath
+    compileOnly "org.immutables:value:$immutablesVersion"
+
     testImplementation "junit:junit:$junitVersion"
 
     androidTestImplementation "androidx.test.ext:junit:$androidxTestJunitVersion"

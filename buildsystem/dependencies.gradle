@@ -33,7 +33,7 @@ ext {
     firebaseBomVersion = '26.0.0'
     googleMaterialVersion = '1.2.1'
     gsonVersion = '2.8.6'
-    immutablesVersion = '2.8.2'
+    immutablesVersion = '2.8.8'
     okhttpVersion = '4.9.0'
     retrofitVersion = '2.9.0'
     rxJava3Version = '3.0.4'
