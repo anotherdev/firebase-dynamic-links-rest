@@ -1,5 +1,6 @@
 package com.anotherdev.sample.firebase.dynamiclinks;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -23,15 +24,26 @@ public class HomeActivity extends AppCompatActivity {
                     .commitNow();
         }
 
+        registerReceiveDynamicLinks("onCreate");
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        registerReceiveDynamicLinks("onNewIntent");
+    }
+
+    private void registerReceiveDynamicLinks(String title) {
+        Log.i(TAG, "registerReceiveDynamicLinks: " + title);
         FirebaseDynamicLinks.getInstance()
                 .getDynamicLink(getIntent())
                 .addOnSuccessListener(pendingDynamicLinkData -> {
-                    Log.i(TAG, String.valueOf(pendingDynamicLinkData));
+                    Log.i(TAG, String.format("%s: %s", title, pendingDynamicLinkData));
                     if (pendingDynamicLinkData != null) {
-                        Log.i(TAG, String.valueOf(pendingDynamicLinkData.getLink()));
-                        Log.i(TAG, String.valueOf(pendingDynamicLinkData.getClickTimestamp()));
+                        Log.i(TAG, String.format("%s: %s", title, pendingDynamicLinkData.getLink()));
+                        Log.i(TAG, String.format("%s: %s", title, pendingDynamicLinkData.getClickTimestamp()));
                     }
                 })
-                .addOnFailureListener(e -> Log.e(TAG, e.getMessage(), e));
+                .addOnFailureListener(e -> Log.e(TAG, String.format("%s: %s", title, e.getMessage()), e));
     }
 }
