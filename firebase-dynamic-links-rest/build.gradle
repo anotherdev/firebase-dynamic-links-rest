@@ -35,6 +35,7 @@ dependencies {
     implementation platform("com.google.firebase:firebase-bom:$firebaseBomVersion")
     api "com.google.firebase:firebase-dynamic-links"
 
+    implementation "com.squareup.okhttp3:logging-interceptor:$okhttpVersion"
     implementation "com.squareup.okhttp3:okhttp:$okhttpVersion"
 
     implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
