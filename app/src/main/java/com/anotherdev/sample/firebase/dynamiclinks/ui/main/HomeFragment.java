@@ -59,7 +59,7 @@ public class HomeFragment extends Fragment {
             DynamicLink.Builder linkBuilder = FirebaseDynamicLinks.getInstance()
                     .createDynamicLink()
                     .setLink(Uri.parse("https://www.example.com"))
-                    .setDomainUriPrefix("https://huaweidtse.page.link/")
+                    .setDomainUriPrefix("https://huaweidtse.page.link")
                     .setAndroidParameters(paramBuilder.build())
                     .setSocialMetaTagParameters(socialBuilder.build());
 
