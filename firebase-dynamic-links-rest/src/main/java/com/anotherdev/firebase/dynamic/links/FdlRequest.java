@@ -21,10 +21,6 @@ interface FdlRequest {
     @SerializedName("suffix")
     Suffix getSuffix();
 
-    static ImmutableFdlRequest.Builder builder() {
-        return ImmutableFdlRequest.builder();
-    }
-
 
     @Value.Immutable
     @Value.Style(strictBuilder = true)
@@ -37,8 +33,18 @@ interface FdlRequest {
         @SerializedName("link")
         String getLink();
 
-        static ImmutableDynamicLinkInfo.Builder builder() {
-            return ImmutableDynamicLinkInfo.builder();
+        @Nullable
+        @SerializedName("androidInfo")
+        AndroidInfo getAndroidInfo();
+
+
+        @Value.Immutable
+        @Value.Style(strictBuilder = true)
+        @Gson.TypeAdapters
+        interface AndroidInfo {
+
+            @SerializedName("androidPackageName")
+            String getAndroidPackageName();
         }
     }
 
@@ -52,10 +58,6 @@ interface FdlRequest {
         @SerializedName("option")
         default Option getOption() {
             return Option.UNGUESSABLE;
-        }
-
-        static ImmutableSuffix.Builder builder() {
-            return ImmutableSuffix.builder();
         }
 
 

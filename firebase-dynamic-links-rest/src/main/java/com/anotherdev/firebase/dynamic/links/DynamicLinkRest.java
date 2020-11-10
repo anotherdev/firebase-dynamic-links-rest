@@ -9,9 +9,7 @@ import com.google.firebase.dynamiclinks.ShortDynamicLink;
 import org.immutables.value.Value;
 
 @Value.Immutable
-@Value.Style(
-        strictBuilder = true
-)
+@Value.Style(strictBuilder = true)
 public interface DynamicLinkRest {
 
     DynamicLink.AndroidParameters.Builder getAndroidParametersBuilder();
@@ -34,7 +32,12 @@ public interface DynamicLinkRest {
 
         @NonNull
         public Task<ShortDynamicLink> buildShortDynamicLink(int suffix) {
-            return firebase.buildShortDynamicLink(suffix);
+            DynamicLinkRest command = build();
+            return firebase.buildShortDynamicLink(
+                    command.getAndroidParametersBuilder(),
+                    command.getSocialMetaTagParametersBuilder(),
+                    command.getDynamicLinkBuilder(),
+                    suffix);
         }
     }
 }
