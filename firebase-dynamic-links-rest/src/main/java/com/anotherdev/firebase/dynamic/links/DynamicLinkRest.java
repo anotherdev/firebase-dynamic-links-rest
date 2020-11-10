@@ -25,7 +25,7 @@ public interface DynamicLinkRest {
         private final FirebaseDynamicLinksRest firebase;
 
         Builder() {
-            firebase = FirebaseDynamicLinksRest.getInstance();
+            this(FirebaseDynamicLinksRest.getInstance());
         }
 
         Builder(@NonNull FirebaseDynamicLinksRest firebase) {
