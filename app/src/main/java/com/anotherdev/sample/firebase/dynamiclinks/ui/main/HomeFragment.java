@@ -14,6 +14,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.anotherdev.firebase.dynamic.links.FirebaseDynamicLinksRest;
 import com.anotherdev.sample.firebase.dynamiclinks.R;
 import com.google.firebase.dynamiclinks.DynamicLink;
 import com.google.firebase.dynamiclinks.FirebaseDynamicLinks;
@@ -63,14 +64,27 @@ public class HomeFragment extends Fragment {
                     .setAndroidParameters(paramBuilder.build())
                     .setSocialMetaTagParameters(socialBuilder.build());
 
-            linkBuilder.buildShortDynamicLink(ShortDynamicLink.Suffix.UNGUESSABLE)
+            FirebaseDynamicLinksRest.getInstance()
+                    .createDynamicLink()
+                    .androidParametersBuilder(paramBuilder)
+                    .socialMetaTagParametersBuilder(socialBuilder)
+                    .dynamicLinkBuilder(linkBuilder)
+                    .buildShortDynamicLink(ShortDynamicLink.Suffix.UNGUESSABLE)
+            //linkBuilder.buildShortDynamicLink(ShortDynamicLink.Suffix.UNGUESSABLE)
                     .addOnSuccessListener(link -> {
                         Log.i(TAG, "onSuccess: getPreviewLink: " + link.getPreviewLink());
                         Log.i(TAG, "onSuccess: getShortLink: " + link.getShortLink());
                         for (ShortDynamicLink.Warning warning : link.getWarnings()) {
                             Log.w(TAG, "onSuccess: warning: " + warning.getMessage());
                         }
-                        linkTextView.setText(String.valueOf(link.getShortLink()));
+
+                        String resultLink = String.format("link: %s\n\npreview: %s\n\n", link.getShortLink(), link.getPreviewLink());
+                        StringBuilder text = new StringBuilder(resultLink);
+                        for (ShortDynamicLink.Warning w : link.getWarnings()) {
+                            text.append(String.format("code: %s\n", w.getCode()));
+                            text.append(String.format("message: %s\n\n", w.getMessage()));
+                        }
+                        linkTextView.setText(text);
                     })
                     .addOnFailureListener(e -> {
                         Log.e(TAG, e.getMessage(), e);
