@@ -8,6 +8,7 @@ import androidx.annotation.Nullable;
 import com.google.firebase.dynamiclinks.ShortDynamicLink;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 class FdlShortDynamicLink implements ShortDynamicLink {
 
@@ -22,18 +23,33 @@ class FdlShortDynamicLink implements ShortDynamicLink {
     @Nullable
     @Override
     public Uri getShortLink() {
-        return null;
+        return Uri.parse(response.getShortLink());
     }
 
     @Nullable
     @Override
     public Uri getPreviewLink() {
-        return null;
+        return Uri.parse(response.getPreviewLink());
     }
 
     @NonNull
     @Override
-    public List<? extends Warning> getWarnings() {
-        return null;
+    public List<Warning> getWarnings() {
+        return response.getWarnings()
+                .stream()
+                .map(warning -> new Warning() {
+                    @Nullable
+                    @Override
+                    public String getCode() {
+                        return warning.getWarningCode();
+                    }
+
+                    @Nullable
+                    @Override
+                    public String getMessage() {
+                        return warning.getWarningMessage();
+                    }
+                })
+                .collect(Collectors.toList());
     }
 }
