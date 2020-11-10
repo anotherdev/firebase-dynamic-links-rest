@@ -2,6 +2,7 @@ package com.anotherdev.firebase.dynamic.links;
 
 import androidx.annotation.Nullable;
 
+import com.google.firebase.dynamiclinks.ShortDynamicLink;
 import com.google.gson.annotations.SerializedName;
 
 import org.immutables.gson.Gson;
@@ -59,8 +60,23 @@ interface FdlRequest {
 
 
         enum Option {
-            UNGUESSABLE,
-            SHORT
+            UNGUESSABLE (ShortDynamicLink.Suffix.UNGUESSABLE),
+            SHORT (ShortDynamicLink.Suffix.SHORT);
+
+            final int suffixOption;
+
+            Option(final int suffixOption) {
+                this.suffixOption = suffixOption;
+            }
+
+            static Option from(final int suffixOption) {
+                for (Option o : Option.values()) {
+                    if (o.suffixOption == suffixOption) {
+                        return o;
+                    }
+                }
+                return UNGUESSABLE;
+            }
         }
     }
 }
