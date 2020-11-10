@@ -33,6 +33,9 @@ interface FdlRequest {
         @SerializedName("domainUriPrefix")
         String getDomainUriPrefix();
 
+        @SerializedName("link")
+        String getLink();
+
         static ImmutableDynamicLinkInfo.Builder builder() {
             return ImmutableDynamicLinkInfo.builder();
         }
