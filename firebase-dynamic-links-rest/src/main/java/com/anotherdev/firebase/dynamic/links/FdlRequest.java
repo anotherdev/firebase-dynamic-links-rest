@@ -37,6 +37,10 @@ interface FdlRequest {
         @SerializedName("androidInfo")
         AndroidInfo getAndroidInfo();
 
+        @Nullable
+        @SerializedName("socialMetaTagInfo")
+        SocialMetaTagInfo getSocialMetaTagInfo();
+
 
         @Value.Immutable
         @Value.Style(strictBuilder = true)
@@ -48,6 +52,22 @@ interface FdlRequest {
 
             @SerializedName("androidFallbackLink")
             String getAndroidFallbackLink();
+        }
+
+
+        @Value.Immutable
+        @Value.Style(strictBuilder = true)
+        @Gson.TypeAdapters
+        interface SocialMetaTagInfo {
+
+            @SerializedName("socialTitle")
+            String getSocialTitle();
+
+            @SerializedName("socialDescription")
+            String getSocialDescription();
+
+            @SerializedName("socialImageLink")
+            String getSocialImageLink();
         }
     }
 
