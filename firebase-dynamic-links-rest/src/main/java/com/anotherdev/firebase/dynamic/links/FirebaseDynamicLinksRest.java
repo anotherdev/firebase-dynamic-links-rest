@@ -65,10 +65,17 @@ public class FirebaseDynamicLinksRest {
                 .androidFallbackLink(android.getFallbackUrl().toString())
                 .build();
 
+        DynamicLinkInfo.SocialMetaTagInfo socialMetaTagInfo = ImmutableSocialMetaTagInfo.builder()
+                .socialTitle(social.getTitle())
+                .socialDescription(social.getDescription())
+                .socialImageLink(social.getImageUrl().toString())
+                .build();
+
         DynamicLinkInfo dynamicLinkInfo = ImmutableDynamicLinkInfo.builder()
                 .domainUriPrefix(linkBuilder.getDomainUriPrefix())
                 .link(linkBuilder.getLink().toString())
                 .androidInfo(androidInfo)
+                .socialMetaTagInfo(socialMetaTagInfo)
                 .build();
 
         FdlRequest request = ImmutableFdlRequest.builder()
