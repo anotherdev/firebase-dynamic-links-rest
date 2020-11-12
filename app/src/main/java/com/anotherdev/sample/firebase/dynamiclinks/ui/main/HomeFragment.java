@@ -50,7 +50,8 @@ public class HomeFragment extends Fragment {
         createLinkButton.setOnClickListener(button -> {
             linkTextView.setText(null);
 
-            DynamicLink.AndroidParameters.Builder paramBuilder = new DynamicLink.AndroidParameters.Builder();
+            DynamicLink.AndroidParameters.Builder paramBuilder = new DynamicLink.AndroidParameters.Builder()
+                    .setFallbackUrl(Uri.parse("https://authrest.dre.agconnect.link/FjRw"));
 
             DynamicLink.SocialMetaTagParameters.Builder socialBuilder = new DynamicLink.SocialMetaTagParameters.Builder()
                     .setTitle("Social Title")
