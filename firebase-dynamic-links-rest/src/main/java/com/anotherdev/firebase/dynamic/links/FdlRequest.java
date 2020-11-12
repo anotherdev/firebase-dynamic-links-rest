@@ -45,6 +45,9 @@ interface FdlRequest {
 
             @SerializedName("androidPackageName")
             String getAndroidPackageName();
+
+            @SerializedName("androidFallbackLink")
+            String getAndroidFallbackLink();
         }
     }
 

@@ -62,6 +62,7 @@ public class FirebaseDynamicLinksRest {
 
         DynamicLinkInfo.AndroidInfo androidInfo = ImmutableAndroidInfo.builder()
                 .androidPackageName(context.getPackageName())
+                .androidFallbackLink(android.getFallbackUrl().toString())
                 .build();
 
         DynamicLinkInfo dynamicLinkInfo = ImmutableDynamicLinkInfo.builder()
