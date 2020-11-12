@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">DynamicLinksRest</string>
+    <string name="create_link">Create Link</string>
 </resources>
