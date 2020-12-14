@@ -45,5 +45,15 @@ public class HomeActivity extends AppCompatActivity {
                     }
                 })
                 .addOnFailureListener(e -> Log.e(TAG, String.format("%s: %s", title, e.getMessage()), e));
+
+        Intent intent = getIntent();
+        Log.e(TAG, "intent: " + intent);
+        Log.e(TAG, "extras: " + (intent != null ? intent.getExtras() : "NULL"));
+        if (intent != null && intent.getExtras() != null) {
+            Bundle extras = intent.getExtras();
+            for (String key : extras.keySet()) {
+                Log.e(TAG, "key: " + key + ": " + extras.get(key));
+            }
+        }
     }
 }
