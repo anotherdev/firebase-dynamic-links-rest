@@ -8,12 +8,22 @@
     tools:context=".ui.main.HomeFragment">
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/create_link_button"
-        android:text="@string/create_link"
+        android:id="@+id/create_firebase_button"
+        android:text="@string/create_firebase_link"
         android:layout_margin="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="0dp"
+        android:layout_height="56dp" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/create_branch_button"
+        android:text="@string/create_branch_link"
+        android:layout_margin="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/create_firebase_button"
         android:layout_width="0dp"
         android:layout_height="56dp" />
 
@@ -24,7 +34,7 @@
         android:layout_margin="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/create_link_button"
+        app:layout_constraintTop_toBottomOf="@id/create_branch_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:text="https://dolfin.onelink.me/EyQh/21cbe33c"/>

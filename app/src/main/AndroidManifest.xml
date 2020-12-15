@@ -8,9 +8,14 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:name="com.anotherdev.sample.firebase.dynamiclinks.HomeApp"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.DynamicLinksRest">
+
+        <meta-data android:name="io.branch.sdk.BranchKey" android:value="key_live_pc5dkjVkjUpbESCU89EcFdfiCulTPkac" />
+        <meta-data android:name="io.branch.sdk.BranchKey.test" android:value="key_test_hlxrWC5Zx16DkYmWu4AHiimdqugRYMr" />
+        <meta-data android:name="io.branch.sdk.TestMode" android:value="false" />
 
         <activity
             android:name=".HomeActivity"
@@ -25,6 +30,12 @@
                 <category android:name="android.intent.category.BROWSABLE"/>
                 <data android:scheme="market"/>
                 <data android:host="details"/>
+            </intent-filter>
+            <intent-filter>
+                <data android:scheme="petallink" />
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
             </intent-filter>
         </activity>
 

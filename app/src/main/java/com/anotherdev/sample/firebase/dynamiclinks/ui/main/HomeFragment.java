@@ -1,5 +1,6 @@
 package com.anotherdev.sample.firebase.dynamiclinks.ui.main;
 
+import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -20,11 +22,18 @@ import com.google.firebase.dynamiclinks.DynamicLink;
 import com.google.firebase.dynamiclinks.FirebaseDynamicLinks;
 import com.google.firebase.dynamiclinks.ShortDynamicLink;
 
+import io.branch.indexing.BranchUniversalObject;
+import io.branch.referral.SharingHelper;
+import io.branch.referral.util.ContentMetadata;
+import io.branch.referral.util.LinkProperties;
+import io.branch.referral.util.ShareSheetStyle;
+
 public class HomeFragment extends Fragment {
 
     private static final String TAG = HomeFragment.class.getName();
 
-    Button createLinkButton;
+    Button createFirebaseLinkButton;
+    Button createBranchLinkButton;
     TextView linkTextView;
 
     private HomeViewModel homeViewModel;
@@ -44,10 +53,11 @@ public class HomeFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        createLinkButton = view.findViewById(R.id.create_link_button);
+        createFirebaseLinkButton = view.findViewById(R.id.create_firebase_button);
+        createBranchLinkButton = view.findViewById(R.id.create_branch_button);
         linkTextView = view.findViewById(R.id.link_textview);
 
-        createLinkButton.setOnClickListener(button -> {
+        createFirebaseLinkButton.setOnClickListener(button -> {
             linkTextView.setText(null);
 
             DynamicLink.AndroidParameters.Builder paramBuilder = new DynamicLink.AndroidParameters.Builder()
@@ -56,7 +66,7 @@ public class HomeFragment extends Fragment {
             DynamicLink.SocialMetaTagParameters.Builder socialBuilder = new DynamicLink.SocialMetaTagParameters.Builder()
                     .setTitle("Social Title")
                     .setDescription("Social Description")
-                    .setImageUrl(Uri.parse("http://via.placeholder.com/150?text=Social"));
+                    .setImageUrl(Uri.parse("http://via.placeholder.com/150?text=Firebase"));
 
             DynamicLink.Builder linkBuilder = FirebaseDynamicLinks.getInstance()
                     .createDynamicLink()
@@ -91,6 +101,42 @@ public class HomeFragment extends Fragment {
                         Log.e(TAG, e.getMessage(), e);
                         linkTextView.setText(e.getMessage());
                     });
+        });
+
+        createBranchLinkButton.setOnClickListener(button -> {
+            linkTextView.setText(null);
+            Context context = button.getContext();
+
+            BranchUniversalObject buo = new BranchUniversalObject()
+                    .setCanonicalIdentifier("content/123")
+                    .setTitle("Buo Title")
+                    .setContentDescription("Buo Content Description")
+                    .setContentImageUrl("http://via.placeholder.com/150?text=Branch.io")
+                    .setContentIndexingMode(BranchUniversalObject.CONTENT_INDEX_MODE.PUBLIC)
+                    .setLocalIndexMode(BranchUniversalObject.CONTENT_INDEX_MODE.PUBLIC)
+                    .setContentMetadata(new ContentMetadata().addCustomMetadata("key1", "value1"));
+
+            buo.generateShortUrl(context, new LinkProperties(), (url, error) -> {
+                Log.e(TAG, "Branch url: " + url);
+                Log.e(TAG, "Branch error: " + error);
+                if (error != null) {
+                    linkTextView.setText(String.format("Branch.io error\ncode: %s\n message: %s", error.getErrorCode(), error.getMessage()));
+                } else {
+                    linkTextView.setText(String.format("Branch.io: %s", url));
+                }
+            });
+
+            ShareSheetStyle ss = new ShareSheetStyle(context, "Check this out!", "This stuff is awesome: ")
+                    .setCopyUrlStyle(ContextCompat.getDrawable(context, android.R.drawable.ic_menu_send), "Copy", "Added to clipboard")
+                    .setMoreOptionStyle(ContextCompat.getDrawable(context, android.R.drawable.ic_menu_search), "Show more")
+                    .addPreferredSharingOption(SharingHelper.SHARE_WITH.FACEBOOK)
+                    .addPreferredSharingOption(SharingHelper.SHARE_WITH.EMAIL)
+                    .addPreferredSharingOption(SharingHelper.SHARE_WITH.MESSAGE)
+                    .addPreferredSharingOption(SharingHelper.SHARE_WITH.HANGOUT)
+                    .setAsFullWidthStyle(true)
+                    .setSharingTitle("Share With");
+
+            buo.showShareSheet(requireActivity(), new LinkProperties(), ss, null);
         });
     }
 
