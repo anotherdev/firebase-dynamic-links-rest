@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">DynamicLinksRest</string>
-    <string name="create_link">Create Link</string>
+    <string name="create_firebase_link">Create Firebase Link</string>
+    <string name="create_branch_link">Create Branch.io Link</string>
 </resources>
