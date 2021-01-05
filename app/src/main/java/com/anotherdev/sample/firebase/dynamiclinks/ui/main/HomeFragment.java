@@ -122,7 +122,10 @@ public class HomeFragment extends Fragment {
                 if (error != null) {
                     linkTextView.setText(String.format("Branch.io error\ncode: %s\n message: %s", error.getErrorCode(), error.getMessage()));
                 } else {
-                    linkTextView.setText(String.format("Branch.io: %s", url));
+                    String text = String.format("Branch.io: url: %s\n\n%s",
+                            url,
+                            "https://petallink.app.link/static_ag_link");
+                    linkTextView.setText(text);
                 }
             });
 
