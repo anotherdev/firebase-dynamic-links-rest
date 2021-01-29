@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'com.google.gms.google-services'
+    id 'com.huawei.agconnect'
 }
 
 android {
@@ -54,6 +55,8 @@ dependencies {
     implementation "com.google.android.gms:play-services-ads-identifier:17.0.0"
 
     implementation "com.google.firebase:firebase-appindexing"
+
+    implementation 'com.huawei.agconnect:agconnect-applinking:1.4.2.301'
 
     implementation "com.huawei.hms:ads-identifier:3.4.28.305"
 
